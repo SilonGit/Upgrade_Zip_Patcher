@@ -26,7 +26,11 @@ jobs:
           swap-size-mb: 1024
           remove-dotnet: 'true'
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+    - name: Show Free Space
+        run: |
+          echo "Free space:"
+          df -h
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -45,8 +49,15 @@ jobs:
         sudo mkdir -p /dat2img/py
         sudo wget -q https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -O update.zip
         sudo unzip -q update.zip -d /files
+        echo "--------------------"
+        echo "First step done.Now the free space is:"
+        df -h
         sudo git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
         sudo cp /dat2img/py/sdat2img.py /files
+        sudo sh -c "rm update.zip"
+        echo "--------------------"
+        echo "Second step done.Current Free Space:"
+        df -h
     - name: Build Files
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -72,6 +83,9 @@ jobs:
         sudo sh -c "rm recovery.img"
         sudo sh -c "rm boot.img"
         sudo ls
+        echo "--------------------"
+        echo "Current Free Space:"
+        df -h
         sudo sh -c "cat system.new.dat.1 >> system.new.dat"
         sudo sh -c "rm system.new.dat.1"
         sudo sh -c "cat system.new.dat.2 >> system.new.dat"
@@ -103,9 +117,17 @@ jobs:
         sudo sh -c "cat system.new.dat.15 >> system.new.dat"
         sudo sh -c "rm system.new.dat.15"
         sudo sh -c "python sdat2img.py system.transfer.list system.new.dat system.img"
+        sudo sh -c "rm system.new.dat"
         sudo sh -c "7z system.img -o /unzip_system"
+        sudo sh -c "rm system.img"
         sudo sh -c "zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2"
+        sudo sh -c "zip -r lib64.zip ./unzip_system/system/system/lib64"
         sudo sh -c "mv -f Launcher.zip /needed"
+        sudi sh -c "mv -f lib64.zip /needed"
+        echo "--------------------"
+        echo "All done ~ Now the free space is:"
+        df -h
+        echo "Have a good day"
     - name : Upload files
       uses: actions/checkout@v3
       if: always()
