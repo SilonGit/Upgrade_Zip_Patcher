@@ -35,6 +35,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo su
         git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
         cp /dat2img/py/sdat2img.py /files/d2i.py
         wget https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip
@@ -43,6 +44,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo su
         cd /files
         mkdir unzip_system
         cat cat system.new.dat.1 >> system.new.dat
