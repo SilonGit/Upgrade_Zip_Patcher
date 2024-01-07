@@ -17,8 +17,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
-
+    
     steps:
+    - name: Maximize build space
+        uses: SilonGit/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
     - name: Checkout
       uses: actions/checkout@v2
     - name: Initialization environment
@@ -48,21 +54,54 @@ jobs:
         cd /files
         sudo mkdir unzip_system
         sudo ls
+        sudo sh -c "rm vendor.new.dat.1"
+        sudo sh -c "rm vendor.new.dat.2"
+        sudo sh -c "rm vendor.new.dat.3"
+        sudo sh -c "rm vendor.new.dat.4"
+        sudo sh -c "rm vendor.new.dat.5"
+        sudo sh -c "rm vendor.new.dat.6"
+        sudo sh -c "rm vendor.new.dat.7"
+        sudo sh -c "rm vendor.new.dat.8"
+        sudo sh -c "rm vendor.new.dat.9"
+        sudo sh -c "rm vendor.new.dat.10"
+        sudo sh -c "rm vendor.new.dat.11"
+        sudo sh -c "rm vendor.new.dat.12"
+        sudo sh -c "rm vendor.new.dat.13"
+        sudo sh -c "rm vendor.new.dat.14"
+        sudo sh -c "rm vendor.new.dat.15"
+        sudo sh -c "rm recovery.img"
+        sudo sh -c "rm boot.img"
+        sudo ls
         sudo sh -c "cat system.new.dat.1 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.1"
         sudo sh -c "cat system.new.dat.2 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.2"
         sudo sh -c "cat system.new.dat.3 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.3"
         sudo sh -c "cat system.new.dat.4 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.4"
         sudo sh -c "cat system.new.dat.5 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.5"
         sudo sh -c "cat system.new.dat.6 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.6"
         sudo sh -c "cat system.new.dat.7 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.7"
         sudo sh -c "cat system.new.dat.8 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.8"
         sudo sh -c "cat system.new.dat.9 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.9"
         sudo sh -c "cat system.new.dat.10 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.10"
         sudo sh -c "cat system.new.dat.11 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.11"
         sudo sh -c "cat system.new.dat.12 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.12"
         sudo sh -c "cat system.new.dat.13 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.13"
         sudo sh -c "cat system.new.dat.14 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.14"
         sudo sh -c "cat system.new.dat.15 >> system.new.dat"
+        sudo sh -c "rm system.new.dat.15"
         sudo sh -c "python sdat2img.py system.transfer.list system.new.dat system.img"
         sudo sh -c "7z system.img -o /unzip_system"
         sudo sh -c "zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2"
