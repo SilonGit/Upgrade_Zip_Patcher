@@ -81,10 +81,13 @@ jobs:
         sudo sh -c "rm vendor.new.dat.15"
         sudo sh -c "rm recovery.img"
         sudo sh -c "rm boot.img"
+        echo "--------------------"
+        echo "After remove vendor.* :"
         sudo ls
         echo "--------------------"
         echo "Current Free Space:"
         df -h
+        echo "Now cat system.new.dat.* to one file."
         sudo sh -c "cat system.new.dat.1 >> system.new.dat"
         sudo sh -c "rm system.new.dat.1"
         sudo sh -c "cat system.new.dat.2 >> system.new.dat"
@@ -115,11 +118,16 @@ jobs:
         sudo sh -c "rm system.new.dat.14"
         sudo sh -c "cat system.new.dat.15 >> system.new.dat"
         sudo sh -c "rm system.new.dat.15"
+        echo "---------- Next Step----------" 
         sudo sh -c "python sdat2img.py system.transfer.list system.new.dat system.img"
         sudo sh -c "rm system.new.dat"
         sudo sh -c "7z system.img -o /unzip_system"
         sudo sh -c "rm system.img"
+        echo "---------- Current Directory ----------"
         sudo ls
+        echo "---------- Current Free Space ----------"
+        df -h
+        echo "---------- Next ----------"
         sudo sh -c "rm /unzip_system/system/system/etc/theme"
         sudo sh -c "rm /unzip_system/system/system/priv-app"
         sudo sh -c "rm /unzip_system/system/system/custom"
@@ -127,7 +135,7 @@ jobs:
         sudo sh -c "zip -r lib64.zip ./unzip_system/system/system/lib64"
         sudo sh -c "mv -f Launcher.zip /needed"
         sudi sh -c "mv -f lib64.zip /needed"
-        echo "--------------------"
+        echo "---------- Final ----------"
         echo "All done ~ Now the free space is:"
         df -h
         echo "Have a good day"
