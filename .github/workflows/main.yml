@@ -35,52 +35,50 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo su
-        git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
-        cp /dat2img/py/sdat2img.py /files/d2i.py
-        wget https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip
-        unzip PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -q -d /files
+        sudo git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
+        sudo cp /dat2img/py/sdat2img.py /files/d2i.py
+        sudo wget https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip
+        sudo unzip PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -q -d /files
     - name: Build Files
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo su
         cd /files
-        mkdir unzip_system
-        cat cat system.new.dat.1 >> system.new.dat
-        cat system.new.dat.2 >> system.new.dat
-        cat system.new.dat.3 >> system.new.dat
-        cat system.new.dat.4 >> system.new.dat
-        cat system.new.dat.5 >> system.new.dat
-        cat system.new.dat.6 >> system.new.dat
-        cat system.new.dat.7 >> system.new.dat
-        cat system.new.dat.8 >> system.new.dat
-        cat system.new.dat.9 >> system.new.dat
-        cat system.new.dat.10 >> system.new.dat
-        cat system.new.dat.11 >> system.new.dat
-        cat system.new.dat.12 >> system.new.dat
-        cat system.new.dat.13 >> system.new.dat
-        cat system.new.dat.14 >> system.new.dat
-        cat system.new.dat.15 >> system.new.dat
-        rm system.new.dat.1
-        rm system.new.dat.2
-        rm system.new.dat.3
-        rm system.new.dat.4
-        rm system.new.dat.5
-        rm system.new.dat.6
-        rm system.new.dat.7
-        rm system.new.dat.8
-        rm system.new.dat.9
-        rm system.new.dat.10
-        rm system.new.dat.11
-        rm system.new.dat.12
-        rm system.new.dat.13
-        rm system.new.dat.14
-        rm system.new.dat.15
-        python s2i.py system.transfer.list system.new.dat system.img
-        7z system.img -o /unzip_system
-        zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2
-        mv -f Launcher.zip /needed
+        sudo mkdir unzip_system
+        sudo cat cat system.new.dat.1 >> system.new.dat
+        sudo cat system.new.dat.2 >> system.new.dat
+        sudo cat system.new.dat.3 >> system.new.dat
+        sudo cat system.new.dat.4 >> system.new.dat
+        sudo cat system.new.dat.5 >> system.new.dat
+        sudo cat system.new.dat.6 >> system.new.dat
+        sudo cat system.new.dat.7 >> system.new.dat
+        sudo cat system.new.dat.8 >> system.new.dat
+        sudo cat system.new.dat.9 >> system.new.dat
+        sudo cat system.new.dat.10 >> system.new.dat
+        sudo cat system.new.dat.11 >> system.new.dat
+        sudo cat system.new.dat.12 >> system.new.dat
+        sudo cat system.new.dat.13 >> system.new.dat
+        sudo cat system.new.dat.14 >> system.new.dat
+        sudo cat system.new.dat.15 >> system.new.dat
+        sudo rm system.new.dat.1
+        sudo rm system.new.dat.2
+        sudo rm system.new.dat.3
+        sudo rm system.new.dat.4
+        sudo rm system.new.dat.5
+        sudo rm system.new.dat.6
+        sudo rm system.new.dat.7
+        sudo rm system.new.dat.8
+        sudo rm system.new.dat.9
+        sudo rm system.new.dat.10
+        sudo rm system.new.dat.11
+        sudo rm system.new.dat.12
+        sudo rm system.new.dat.13
+        sudo rm system.new.dat.14
+        sudo rm system.new.dat.15
+        sudo python s2i.py system.transfer.list system.new.dat system.img
+        sudo 7z system.img -o /unzip_system
+        sudo zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2
+        sudo mv -f Launcher.zip /needed
     - name : Upload files
       uses: actions/checkout@v3
       if: always()
