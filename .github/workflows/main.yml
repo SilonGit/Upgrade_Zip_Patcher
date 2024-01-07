@@ -47,6 +47,7 @@ jobs:
       run: |
         cd /files
         sudo mkdir unzip_system
+        sudo ls
         sudo cat system.new.dat.1 >> system.new.dat
         sudo cat system.new.dat.2 >> system.new.dat
         sudo cat system.new.dat.3 >> system.new.dat
