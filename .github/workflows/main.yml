@@ -48,13 +48,13 @@ jobs:
         sudo mkdir -p /dat2img/py
         sudo wget -q https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -O update.zip
         sudo unzip -q update.zip -d /files
-        echo "--------------------"
+        echo "---------- Download Complete ----------"
         echo "First step done.Now the free space is:"
         df -h
         sudo git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
         sudo cp /dat2img/py/sdat2img.py /files
         sudo sh -c "rm update.zip"
-        echo "--------------------"
+        echo "---------- update.zip Deleted ----------"
         echo "Second step done.Current Free Space:"
         df -h
     - name: Build Files
@@ -63,6 +63,7 @@ jobs:
       run: |
         cd /files
         sudo mkdir unzip_system
+        echo "Current Directory:"
         sudo ls
         sudo sh -c "rm vendor.new.dat.1"
         sudo sh -c "rm vendor.new.dat.2"
@@ -81,7 +82,7 @@ jobs:
         sudo sh -c "rm vendor.new.dat.15"
         sudo sh -c "rm recovery.img"
         sudo sh -c "rm boot.img"
-        echo "--------------------"
+        echo "---------- Deleted ----------"
         echo "After remove vendor.* :"
         sudo ls
         echo "--------------------"
@@ -118,19 +119,22 @@ jobs:
         sudo sh -c "rm system.new.dat.14"
         sudo sh -c "cat system.new.dat.15 >> system.new.dat"
         sudo sh -c "rm system.new.dat.15"
-        echo "---------- Next Step----------" 
+        echo "--- Remove system.new.dat.* complete. Next Step ---" 
         sudo sh -c "python sdat2img.py system.transfer.list system.new.dat system.img"
         sudo sh -c "rm system.new.dat"
-        sudo sh -c "7z system.img -o/unzip_system"
+        sudo sh -c "7z x system.img -o/unzip_system"
+        echo "Unzio system complete."
         sudo sh -c "rm system.img"
         echo "---------- Current Directory ----------"
         sudo ls
         echo "---------- Current Free Space ----------"
         df -h
         echo "---------- Next ----------"
+        echo "Removing unnecessary files"
         sudo sh -c "rm /unzip_system/system/system/etc/theme"
         sudo sh -c "rm /unzip_system/system/system/priv-app"
         sudo sh -c "rm /unzip_system/system/system/custom"
+        echo "Complete.Next is zip and move files to directory."
         sudo sh -c "zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2"
         sudo sh -c "zip -r lib64.zip ./unzip_system/system/system/lib64"
         sudo sh -c "mv -f Launcher.zip /needed"
