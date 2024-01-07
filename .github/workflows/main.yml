@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -32,15 +32,19 @@ jobs:
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin libctf-nobfd0 libcunit1-dev libhdf5-dev libopenblas-dev \
         p7zip-full zip -y
     - name: Clone source files
+      env:
+        DEBIAN_FRONTEND: noninteractive
       run: |
         git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
         cp /dat2img/py/sdat2img.py /files/d2i.py
         wget https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip
         unzip PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -q -d /files
     - name: Build Files
+      env:
+        DEBIAN_FRONTEND: noninteractive
       run: |
         cd /files
-        sudo mkdir unzip_system
+        mkdir unzip_system
         cat cat system.new.dat.1 >> system.new.dat
         cat system.new.dat.2 >> system.new.dat
         cat system.new.dat.3 >> system.new.dat
