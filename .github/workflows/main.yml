@@ -48,40 +48,25 @@ jobs:
         cd /files
         sudo mkdir unzip_system
         sudo ls
-        sudo cat system.new.dat.1 >> system.new.dat
-        sudo cat system.new.dat.2 >> system.new.dat
-        sudo cat system.new.dat.3 >> system.new.dat
-        sudo cat system.new.dat.4 >> system.new.dat
-        sudo cat system.new.dat.5 >> system.new.dat
-        sudo cat system.new.dat.6 >> system.new.dat
-        sudo cat system.new.dat.7 >> system.new.dat
-        sudo cat system.new.dat.8 >> system.new.dat
-        sudo cat system.new.dat.9 >> system.new.dat
-        sudo cat system.new.dat.10 >> system.new.dat
-        sudo cat system.new.dat.11 >> system.new.dat
-        sudo cat system.new.dat.12 >> system.new.dat
-        sudo cat system.new.dat.13 >> system.new.dat
-        sudo cat system.new.dat.14 >> system.new.dat
-        sudo cat system.new.dat.15 >> system.new.dat
-        sudo rm system.new.dat.1
-        sudo rm system.new.dat.2
-        sudo rm system.new.dat.3
-        sudo rm system.new.dat.4
-        sudo rm system.new.dat.5
-        sudo rm system.new.dat.6
-        sudo rm system.new.dat.7
-        sudo rm system.new.dat.8
-        sudo rm system.new.dat.9
-        sudo rm system.new.dat.10
-        sudo rm system.new.dat.11
-        sudo rm system.new.dat.12
-        sudo rm system.new.dat.13
-        sudo rm system.new.dat.14
-        sudo rm system.new.dat.15
-        sudo python s2i.py system.transfer.list system.new.dat system.img
-        sudo 7z system.img -o /unzip_system
-        sudo zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2
-        sudo mv -f Launcher.zip /needed
+        sudo sh -c "cat system.new.dat.1 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.2 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.3 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.4 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.5 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.6 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.7 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.8 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.9 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.10 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.11 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.12 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.13 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.14 >> system.new.dat"
+        sudo sh -c "cat system.new.dat.15 >> system.new.dat"
+        sudo sh -c "python s2i.py system.transfer.list system.new.dat system.img"
+        sudo sh -c "7z system.img -o /unzip_system"
+        sudo sh -c "zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2"
+        sudo sh -c "mv -f Launcher.zip /needed"
     - name : Upload files
       uses: actions/checkout@v3
       if: always()
