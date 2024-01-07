@@ -63,7 +63,7 @@ jobs:
         sudo sh -c "cat system.new.dat.13 >> system.new.dat"
         sudo sh -c "cat system.new.dat.14 >> system.new.dat"
         sudo sh -c "cat system.new.dat.15 >> system.new.dat"
-        sudo sh -c "python s2i.py system.transfer.list system.new.dat system.img"
+        sudo sh -c "python sdat2img.py system.transfer.list system.new.dat system.img"
         sudo sh -c "7z system.img -o /unzip_system"
         sudo sh -c "zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2"
         sudo sh -c "mv -f Launcher.zip /needed"
