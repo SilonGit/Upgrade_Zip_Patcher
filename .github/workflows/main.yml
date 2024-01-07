@@ -131,7 +131,7 @@ jobs:
         df -h
         echo "---------- Next ----------"
         echo "Removing unnecessary files"
-        ls unzip_system
+        sudo ls unzip_system
         echo "--------------------"
         sudo sh -c "rm -rf /unzip_system/system/etc/theme"
         sudo sh -c "rm -rf /unzip_system/system/priv-app"
