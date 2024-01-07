@@ -37,8 +37,8 @@ jobs:
       run: |
         sudo mkdir needed
         sudo mkdir -p /dat2img/py
-        sudo wget -q https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip
-        sudo unzip PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -q -d /files
+        sudo wget -q https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -O update.zip
+        sudo unzip -q update.zip -d /files
         sudo git clone --depth=1 https://github.com/xpirt/sdat2img.git /dat2img/py
         sudo cp /dat2img/py/sdat2img.py /files
     - name: Build Files
