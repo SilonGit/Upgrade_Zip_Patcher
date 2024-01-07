@@ -19,16 +19,16 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     
     steps:
-    - name: Maximize build space
-        uses: SilonGit/maximize-build-space@master
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
+    #- name: Maximize build space
+        #uses: SilonGit/maximize-build-space@master
+        #with:
+          #root-reserve-mb: 512
+          #swap-size-mb: 1024
+          #remove-dotnet: 'true'
     - name: Checkout
       uses: actions/checkout@v3
     - name: Show Free Space
-        run: |
+      run: |
           echo "Free space:"
           df -h
     - name: Initialization environment
@@ -119,6 +119,10 @@ jobs:
         sudo sh -c "rm system.new.dat"
         sudo sh -c "7z system.img -o /unzip_system"
         sudo sh -c "rm system.img"
+        sudo ls
+        sudo sh -c "rm /unzip_system/system/system/etc/theme"
+        sudo sh -c "rm /unzip_system/system/system/priv-app"
+        sudo sh -c "rm /unzip_system/system/system/custom"
         sudo sh -c "zip -r Launcher.zip ./unzip_system/system/system/app/BBKLauncher2"
         sudo sh -c "zip -r lib64.zip ./unzip_system/system/system/lib64"
         sudo sh -c "mv -f Launcher.zip /needed"
