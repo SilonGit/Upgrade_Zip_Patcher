@@ -150,4 +150,4 @@ jobs:
       if: always()
       with:
         name: Files
-        path: /needed/
+        path: /needed
