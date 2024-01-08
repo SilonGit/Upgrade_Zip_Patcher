@@ -146,7 +146,7 @@ jobs:
         df -h
         echo "Have a good day"
     - name : Upload files
-      uses: actions/checkout@v3
+      uses: actions/upload-artifact@master
       if: always()
       with:
         name: Files
