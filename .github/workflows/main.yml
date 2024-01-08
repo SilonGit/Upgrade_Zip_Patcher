@@ -44,7 +44,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo mkdir needed
+        sudo mkdir -p /needed/zip/
         sudo mkdir -p /dat2img/py
         sudo wget -q https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2244_A_13.0.8.4.W10.V000L1-update-full_1673318761.zip -O update.zip
         sudo unzip -q update.zip -d /files
@@ -148,12 +148,13 @@ jobs:
         sudo sh -c "rm -rf odm.transfer.list"
         sudo sh -c "rm -rf firmware-update"
         echo "Complete.Next is zip and move files to directory."
-        sudo sh -c "zip -r Launcher.zip /unzip_system/system/app/BBKLauncher2"
-        sudo sh -c "zip -r lib64.zip /unzip_system/system/lib64"
+        sudo sh -c "zip -q -r Launcher.zip /unzip_system/system/app/BBKLauncher2"
+        sudo sh -c "zip -q -r lib64.zip /unzip_system/system/lib64"
         echo "Check zip file exist"
         sudo ls
-        sudo sh -c "mv -f Launcher.zip /needed"
-        sudo sh -c "mv -f lib64.zip /needed"
+        echo "And next is,move files to /needed Dir. "
+        sudo sh -c "mv -f Launcher.zip /needed/zip/"
+        sudo sh -c "mv -f lib64.zip /needed/zip/"
         echo "---------- Final ----------"
         echo "All done ~ Now the free space is:"
         df -h
@@ -163,4 +164,4 @@ jobs:
       if: always()
       with:
         name: Files
-        path: /needed
+        path: /needed/zip
