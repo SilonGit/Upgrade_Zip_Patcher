@@ -140,7 +140,7 @@ jobs:
         sudo sh -c "zip -r Launcher.zip /unzip_system/system/app/BBKLauncher2"
         sudo sh -c "zip -r lib64.zip /unzip_system/system/lib64"
         sudo sh -c "mv -f Launcher.zip /needed"
-        sudi sh -c "mv -f lib64.zip /needed"
+        sudo sh -c "mv -f lib64.zip /needed"
         echo "---------- Final ----------"
         echo "All done ~ Now the free space is:"
         df -h
